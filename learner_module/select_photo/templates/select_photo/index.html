@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Starter Template for Bootstrap</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'hotkeys/hotkeys.min.css' %}">
+    </head>
+
+    <body ng-app="myApp">
+
+        <div class="ui inverted top attached menu">
+            <div class="labeled button">
+                <a class="ui item header" href="#"><i class="home icon"></i></a>
+            </div>
+        </div>
+
+        <div class="ui container" ng-controller="mycontroller"
+             ng-init="picId = {{ pic_id }}; nextId = {{ next_id }}">
+
+            <div style="margin: 30px;" class="ui segment">
+                <div style="margin: 10px;" class="ui centered">
+                    <img class="ui centered tiny rounded image" ng-src="/pic/{% templatetag openvariable %} picId
+                    {% templatetag closevariable %}" />
+                    <div class="ui bottom attached label">
+                        <i class="info circle icon"></i>
+                        Select a number or hit space/enter to skip.
+                        <p ng-if="finished">No more pictures.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+
+
+        <!-- core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="{% static 'hotkeys/hotkeys.min.js' %}"></script>
+        <script src="{% static 'semantic/semantic.min.js' %}"></script>
+        <script src="{% static 'app.js' %}"></script>
+    </body>
+</html>
