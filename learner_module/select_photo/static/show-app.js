@@ -4,6 +4,7 @@ myApp.controller('mycontroller', ['$scope', '$timeout', '$http', 'hotkeys', func
 
     $scope.finished = false;
     $scope.current = {};
+    $scope.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     $scope.nextPic = function () {
         console.log($scope.picId);
@@ -22,9 +23,11 @@ myApp.controller('mycontroller', ['$scope', '$timeout', '$http', 'hotkeys', func
             .success(function (result) {
                 $scope.current.id = result.id;
                 $scope.current.cat = result.category;
-                $scope.current.l1 = result.label1;
-                $scope.current.l2 = result.label2;
-                $scope.current.l3 = result.label3;
+                $scope.current.real_label = result.real_label;
+                $scope.label = [];
+                for (var i = 0; i < 10; i++)
+                    $scope.current['label' + i] = result['label' + i];
+                $scope.current.shown = result.shown;
                 $scope.current.cmp = result.completed;
             });
     };
